@@ -16,8 +16,7 @@ import uniandes.cupi2.avion.mundo.Silla.Ubicacion;
 /**
  * Avi�n de pasajeros.
  */
-public class Avion
-{
+public class Avion {
     // -----------------------------------------------------------------
     // Constantes
     // -----------------------------------------------------------------
@@ -55,8 +54,7 @@ public class Avion
      * Construye el avi�n. <br>
      * <b>post: </b> Se inicializan las listas de sillas ejecutivas y econ�micas.
      */
-    public Avion( )
-    {
+    public Avion() {
         Ubicacion ubicacion;
 
         // Crea las sillas ejecutivas
@@ -65,28 +63,27 @@ public class Avion
         // Crea las sillas econ�micas
         sillasEconomicas = new Silla[SILLAS_ECONOMICAS];
 
-        sillasEjecutivas[ 0 ] = new Silla( 1, Clase.EJECUTIVA, Ubicacion.VENTANA );
-        sillasEjecutivas[ 1 ] = new Silla( 2, Clase.EJECUTIVA, Ubicacion.PASILLO );
-        sillasEjecutivas[ 2 ] = new Silla( 3, Clase.EJECUTIVA, Ubicacion.PASILLO );
-        sillasEjecutivas[ 3 ] = new Silla( 4, Clase.EJECUTIVA, Ubicacion.VENTANA );
-        sillasEjecutivas[ 4 ] = new Silla( 5, Clase.EJECUTIVA, Ubicacion.VENTANA );
-        sillasEjecutivas[ 5 ] = new Silla( 6, Clase.EJECUTIVA, Ubicacion.PASILLO );
-        sillasEjecutivas[ 6 ] = new Silla( 7, Clase.EJECUTIVA, Ubicacion.PASILLO );
-        sillasEjecutivas[ 7 ] = new Silla( 8, Clase.EJECUTIVA, Ubicacion.VENTANA );
+        sillasEjecutivas[0] = new Silla(1, Clase.EJECUTIVA, Ubicacion.VENTANA);
+        sillasEjecutivas[1] = new Silla(2, Clase.EJECUTIVA, Ubicacion.PASILLO);
+        sillasEjecutivas[2] = new Silla(3, Clase.EJECUTIVA, Ubicacion.PASILLO);
+        sillasEjecutivas[3] = new Silla(4, Clase.EJECUTIVA, Ubicacion.VENTANA);
+        sillasEjecutivas[4] = new Silla(5, Clase.EJECUTIVA, Ubicacion.VENTANA);
+        sillasEjecutivas[5] = new Silla(6, Clase.EJECUTIVA, Ubicacion.PASILLO);
+        sillasEjecutivas[6] = new Silla(7, Clase.EJECUTIVA, Ubicacion.PASILLO);
+        sillasEjecutivas[7] = new Silla(8, Clase.EJECUTIVA, Ubicacion.VENTANA);
 
-        for( int numSilla = 1 + SILLAS_EJECUTIVAS, j = 1; j <= SILLAS_ECONOMICAS; numSilla++, j++ )
-        {
+        for (int numSilla = 1 + SILLAS_EJECUTIVAS, j = 1; j <= SILLAS_ECONOMICAS; numSilla++, j++) {
             // Sillas ventana
-            if( j % 6 == 1 || j % 6 == 0 )
+            if (j % 6 == 1 || j % 6 == 0)
                 ubicacion = Ubicacion.VENTANA;
             // Sillas centrales
-            else if( j % 6 == 2 || j % 6 == 5 )
+            else if (j % 6 == 2 || j % 6 == 5)
                 ubicacion = Ubicacion.CENTRAL;
             // Sillas pasillo
             else
                 ubicacion = Ubicacion.PASILLO;
 
-            sillasEconomicas[ j - 1 ] = new Silla( numSilla, Clase.ECONOMICA, ubicacion );
+            sillasEconomicas[j - 1] = new Silla(numSilla, Clase.ECONOMICA, ubicacion);
         }
     }
 
@@ -96,77 +93,78 @@ public class Avion
 
     /**
      * Asigna la silla al pasajero en la clase y ubicaci�n especificados. <br>
-     * <b>post: </b> Si existe una silla con la clase y la ubicaci�n dada, el pasajero queda asignado en la primera de ellas seg�n el orden num�rico.
-     * @param pClase Clase elegida por el pasajero. Clase pertenece {Clase.EJECUTIVA, Clase.ECONOMICA}.
-     * @param pUbicacion Ubicaci�n elegida por el pasajero. Si clase = Clase.ECONOMICA entonces ubicaci�n pertenece {VENTANA, CENTRAL, PASILLO}, <br>
-     *        o si clase = Clase.EJECUTIVA entonces ubicaci�n pertenece {VENTANA, PASILLO}.
-     * @param pPasajero Pasajero a asignar. pPasajero != null y no tiene silla en el avi�n.
-     * @return Silla asignada al pasajero o null si no se pudo asignar una silla al pasajero en la ubicaci�n y clase especificados.
+     * <b>post: </b> Si existe una silla con la clase y la ubicaci�n dada, el p
+     * sajero queda asignado en la primera de ellas seg�n el orden num�rico.
+     * 
+     * @param pClase     Clase elegida por el pasajero. Clase pertenece
+     *                   {Clase.EJECUTIVA, Clase.ECONOMICA}.
+     * @param pUbicacion Ubicaci�n elegida por el pasajero. Si clase = C
+     *                   ase.ECONOMICA entonces ubicaci�n pertenece {VENTANA, CEN
+     *                   RAL, PASILLO}, <br>
+     *                   o si clase = Clase.EJECUTIVA entonces ubicaci�n pertenece {
+     *                   ENTANA, PASILLO}.
+     * @param pPasajero  Pasajero a asignar. pPasajero != null y no tiene silla en
+     *                   el avi�n.
+     * @return Silla asignada al pasajero o null si no se pudo asignar una silla al
+     *         pasajero en la ubicaci�n y clase especificados.
      */
-    public Silla asignarSilla( Clase pClase, Ubicacion pUbicacion, Pasajero pPasajero )
-    {
+    public Silla asignarSilla(Clase pClase, Ubicacion pUbicacion, Pasajero pPasajero) {
         // busca una silla libre
         Silla silla = null;
-        if( pClase == Clase.EJECUTIVA )
-        {
-            silla = buscarSillaEjecutivaLibre( pUbicacion );
+        if (pClase == Clase.EJECUTIVA) {
+            silla = buscarSillaEjecutivaLibre(pUbicacion);
+        } else if (pClase == Clase.ECONOMICA) {
+            silla = buscarSillaEconomicaLibre(pUbicacion);
         }
-        else if( pClase == Clase.ECONOMICA )
-        {
-            silla = buscarSillaEconomicaLibre( pUbicacion );
-        }
-        if( silla != null )
-        {
-            silla.asignarAPasajero( pPasajero );
+        if (silla != null) {
+            silla.asignarAPasajero(pPasajero);
         }
         return silla;
     }
 
     /**
-     * Busca la siguiente silla ejecutiva que este libre y tenga la ubicaci�n indicada. <br>
+     * Busca la siguiente silla ejecutiva que este libre y tenga la ubicaci�n i
+     * dicada. <br>
      * <b>pre: </b> La lista de sillas ejecutivas est� inicializada.
-     * @param pUbicacion Ubicaci�n en donde buscar la silla. pUbicaci�n pertenece {VENTANA, PASILLO}.
+     * 
+     * @param pUbicacion Ubicaci�n en donde buscar la silla. pUbicaci�n per
+     *                   enece {VENTANA, PASILLO}.
      * @return La silla libre encontrada. Si no encuentra una silla retorna null.
      */
-    public Silla buscarSillaEjecutivaLibre( Ubicacion pUbicacion )
-    {
+    public Silla buscarSillaEjecutivaLibre(Ubicacion pUbicacion) {
         boolean encontrado = false;
         Silla silla = null;
-        for( int i = 0; i < SILLAS_EJECUTIVAS && !encontrado; i++ )
-        {
-            silla = sillasEjecutivas[ i ];
-            if( ! ( silla.sillaAsignada( ) ) && silla.darUbicacion( ) == pUbicacion )
-            {
+        for (int i = 0; i < SILLAS_EJECUTIVAS && !encontrado; i++) {
+            silla = sillasEjecutivas[i];
+            if (!(silla.sillaAsignada()) && silla.darUbicacion() == pUbicacion) {
                 encontrado = true;
             }
         }
-        if( !encontrado )
-        {
+        if (!encontrado) {
             silla = null;
         }
         return silla;
     }
 
     /**
-     * Busca la siguiente silla econ�mica que este libre y tenga la ubicaci�n indicada. <br>
+     * Busca la siguiente silla econ�mica que este libre y tenga la ubicaci�n ind
+     * cada. <br>
      * <b>pre: </b> La lista de sillas econ�micas est� inicializada.
-     * @param pUbicacion Ubicaci�n en donde buscar la silla. pUbicaci�n pertenece {VENTANA, CENTRAL, PASILLO}.
+     * 
+     * @param pUbicacion Ubicaci�n en donde buscar la silla. pUbicaci�n per
+     *                   enece {VENTANA, CENTRAL, PASILLO}.
      * @return Silla libre encontrada. Si no encuentra una silla retorna null.
      */
-    public Silla buscarSillaEconomicaLibre( Ubicacion pUbicacion )
-    {
+    public Silla buscarSillaEconomicaLibre(Ubicacion pUbicacion) {
         boolean encontrado = false;
         Silla silla = null;
-        for( int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++ )
-        {
-            silla = sillasEconomicas[ i ];
-            if( ! ( silla.sillaAsignada( ) ) && silla.darUbicacion( ) == pUbicacion )
-            {
+        for (int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++) {
+            silla = sillasEconomicas[i];
+            if (!(silla.sillaAsignada()) && silla.darUbicacion() == pUbicacion) {
                 encontrado = true;
             }
         }
-        if( !encontrado )
-        {
+        if (!encontrado) {
             silla = null;
         }
         return silla;
@@ -174,18 +172,18 @@ public class Avion
 
     /**
      * Busca un pasajero en el avi�n.
+     * 
      * @param pPasajero Pasajero a buscar. pPasajero != null.
-     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna null.
+     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna n
+     *         ll.
      */
-    public Silla buscarPasajero( Pasajero pPasajero )
-    {
+    public Silla buscarPasajero(Pasajero pPasajero) {
         // Busca el pasajero en ejecutiva
-        Silla silla = buscarPasajeroEjecutivo( pPasajero );
+        Silla silla = buscarPasajeroEjecutivo(pPasajero);
         // Si no estaba en ejecutiva
-        if( null == silla )
-        {
+        if (null == silla) {
             // Busca en econ�mica
-            silla = buscarPasajeroEconomico( pPasajero );
+            silla = buscarPasajeroEconomico(pPasajero);
         }
 
         return silla;
@@ -195,23 +193,21 @@ public class Avion
     /**
      * Busca un pasajero en las sillas ejecutivas. <br>
      * <b>pre: </b> La lista de sillas ejecutivas est� inicializada.
+     * 
      * @param pPasajero Pasajero a buscar. pPasajero != null.
-     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna null.
+     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna n
+     *         ll.
      */
-    public Silla buscarPasajeroEjecutivo( Pasajero pPasajero )
-    {
+    public Silla buscarPasajeroEjecutivo(Pasajero pPasajero) {
         boolean encontrado = false;
         Silla silla = null;
-        for( int i = 0; i < SILLAS_EJECUTIVAS && !encontrado; i++ )
-        {
-            silla = sillasEjecutivas[ i ];
-            if( silla.sillaAsignada( ) && silla.darPasajero( ).igualA( pPasajero ) )
-            {
+        for (int i = 0; i < SILLAS_EJECUTIVAS && !encontrado; i++) {
+            silla = sillasEjecutivas[i];
+            if (silla.sillaAsignada() && silla.darPasajero().igualA(pPasajero)) {
                 encontrado = true;
             }
         }
-        if( !encontrado )
-        {
+        if (!encontrado) {
             silla = null;
         }
         return silla;
@@ -220,23 +216,21 @@ public class Avion
     /**
      * Busca un pasajero en las sillas econ�micas. <br>
      * <b>pre: </b> La lista de sillas econ�micas est� inicializada.
+     * 
      * @param pPasajero Pasajero a buscar. pPasajero != null.
-     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna null.
+     * @return Silla en la que se encontr� el pasajero. Si no lo encuentra retorna n
+     *         ll.
      */
-    public Silla buscarPasajeroEconomico( Pasajero pPasajero )
-    {
+    public Silla buscarPasajeroEconomico(Pasajero pPasajero) {
         boolean encontrado = false;
         Silla silla = null;
-        for( int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++ )
-        {
-            silla = sillasEconomicas[ i ];
-            if( silla.sillaAsignada( ) && silla.darPasajero( ).igualA( pPasajero ) )
-            {
+        for (int i = 0; i < SILLAS_ECONOMICAS && !encontrado; i++) {
+            silla = sillasEconomicas[i];
+            if (silla.sillaAsignada() && silla.darPasajero().igualA(pPasajero)) {
                 encontrado = true;
             }
         }
-        if( !encontrado )
-        {
+        if (!encontrado) {
             silla = null;
         }
         return silla;
@@ -244,19 +238,20 @@ public class Avion
 
     /**
      * Desasigna la silla de un pasajero. <br>
-     * <b>post: </b> Si se encuentra una silla con el pasajero, la silla quedara con su pasajero igual a null.
+     * <b>post: </b> Si se encuentra una silla con el pasajero, la silla quedara con
+     * su pasajero igual a null.
+     * 
      * @param pPasajero Pasajero a retirar. pPasajero != null.
-     * @return Retorna true si encontr� el pasajero y des asign� la silla, false en caso contrario.
+     * @return Retorna true si encontr� el pasajero y des asign� la silla, false en 
+     *         aso contrario.
      */
-    public boolean desasignarSilla( Pasajero pPasajero )
-    {
+    public boolean desasignarSilla(Pasajero pPasajero) {
         // Busca el pasajero en el avi�n
-        Silla silla = buscarPasajero( pPasajero );
+        Silla silla = buscarPasajero(pPasajero);
         boolean resultado = false;
         // Si lo encuentra desasigna
-        if( silla != null )
-        {
-            silla.desasignarSilla( );
+        if (silla != null) {
+            silla.desasignarSilla();
             resultado = true;
         }
         return resultado;
@@ -265,15 +260,13 @@ public class Avion
     /**
      * Retorna el n�mero de sillas ejecutivas ocupadas. <br>
      * <b>pre: </b> La lista de sillas ejecutivas est� inicializada.
+     * 
      * @return N�mero de silla ejecutivas ocupadas.
      */
-    public int contarSillasEjecutivasOcupadas( )
-    {
+    public int contarSillasEjecutivasOcupadas() {
         int contador = 0;
-        for( Silla sillaEjecutiva : sillasEjecutivas )
-        {
-            if( sillaEjecutiva.sillaAsignada( ) )
-            {
+        for (Silla sillaEjecutiva : sillasEjecutivas) {
+            if (sillaEjecutiva.sillaAsignada()) {
                 contador++;
             }
         }
@@ -283,15 +276,13 @@ public class Avion
     /**
      * Retorna el n�mero de sillas econ�micas ocupadas. <br>
      * <b>pre: </b> La lista de sillas econ�micas est� inicializada.
+     * 
      * @return N�mero de sillas econ�micas ocupadas.
      */
-    public int contarSillasEconomicasOcupadas( )
-    {
+    public int contarSillasEconomicasOcupadas() {
         int contador = 0;
-        for( Silla sillaEconomica : sillasEconomicas )
-        {
-            if( sillaEconomica.sillaAsignada( ) )
-            {
+        for (Silla sillaEconomica : sillasEconomicas) {
+            if (sillaEconomica.sillaAsignada()) {
                 contador++;
             }
         }
@@ -300,32 +291,32 @@ public class Avion
 
     /**
      * Calcula el porcentaje de ocupaci�n del avi�n.
+     * 
      * @return Porcentaje total de ocupaci�n.
      */
-    public double calcularPorcentajeOcupacion( )
-    {
+    public double calcularPorcentajeOcupacion() {
         double porcentaje;
         int totalSillas = SILLAS_ECONOMICAS + SILLAS_EJECUTIVAS;
-        int sillasOcupadas = contarSillasEconomicasOcupadas( ) + contarSillasEjecutivasOcupadas( );
-        porcentaje = ( double )sillasOcupadas / totalSillas * 100;
+        int sillasOcupadas = contarSillasEconomicasOcupadas() + contarSillasEjecutivasOcupadas();
+        porcentaje = (double) sillasOcupadas / totalSillas * 100;
         return porcentaje;
     }
 
     /**
      * Retorna las sillas ejecutivas del avi�n.
+     * 
      * @return Sillas ejecutivas del avi�n.
      */
-    public Silla[] obtenerSillasEjecutivas( )
-    {
+    public Silla[] obtenerSillasEjecutivas() {
         return sillasEjecutivas;
     }
 
     /**
      * Retorna las sillas econ�micas del avi�n.
+     * 
      * @return Sillas econ�micas del avi�n.
      */
-    public Silla[] obtenerSillasEconomicas( )
-    {
+    public Silla[] obtenerSillasEconomicas() {
         return sillasEconomicas;
     }
 
@@ -333,12 +324,22 @@ public class Avion
         int sillasEjecutivasVentana = contarSillasVentanaOcupadas(sillasEjecutivas);
         int sillasEconomicasVentana = contarSillasVentanaOcupadas(sillasEconomicas);
 
-        if(sillasEconomicasVentana > sillasEconomicasVentana) {
+        if (sillasEconomicasVentana > sillasEconomicasVentana) {
             return Clase.EJECUTIVA;
-        } else if(sillasEconomicasVentana > sillasEjecutivasVentana){
+        } else if (sillasEconomicasVentana > sillasEjecutivasVentana) {
             return Clase.ECONOMICA;
-        } 
+        }
         return null; // si son iguales o no hay sillas ocupadas
+    }
+
+    private int contarSillasVentanaOcupadas(silla[] sillas) {
+        int contador = 0;
+        for (Silla silla : sillas) {
+            if (silla.darUbicacion() == Ubicacion.VENTANA && silla.sillaAsignada()) {
+                contador++;
+            }
+        }
+        return contador;
     }
 
     /**
@@ -346,16 +347,22 @@ public class Avion
      * @return Respuesta 1.
      */
     public String metodo1( )
-    {
-        return "Respuesta 1";
+        Clase claseConMasSillas = darClaseConMasSillasEnVentanaOcupadas();
+
+        if (claseConMasSillas == Clase.EJECUTIVA) {
+            return "Hay más sillas ocupadas en la ventana de la clase ejecutiva.";
+        } else if (claseConMasSillas == Clase.ECONOMICA) {
+            return "Hay más sillas ocupadas en la ventana de la clase económica.";{
+        }
+        return "Hay un número igual de sillas ocupadas en la ventana de ambas clases.";
     }
 
     /**
      * M�todo para la extensi�n 2.
+     * 
      * @return Respuesta 2.
      */
-    public String metodo2( )
-    {
+    public String metodo2() {
         return "Respuesta 2";
     }
 
