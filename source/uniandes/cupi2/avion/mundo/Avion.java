@@ -342,6 +342,15 @@ public class Avion {
         return contador;
     }
 
+    public Silla darSillaEconomicaLibreEnVentana(){
+        for (Silla silla : sillasEconomicas) {
+            if (!silla.sillaAsignada() && silla.darUbicacion() == Ubicacion.VENTANA) {
+                return silla;
+            }
+        }
+        return null;
+    }
+
     /**
      * M�todo para la extensi�n 1.
      * @return Respuesta 1.
