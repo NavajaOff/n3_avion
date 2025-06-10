@@ -342,6 +342,15 @@ public class Avion {
         return contador;
     }
 
+    public Silla darSillaEconomicaLibreEnVentana(){
+        for (Silla silla : sillasEconomicas) {
+            if (!silla.sillaAsignada() && silla.darUbicacion() == Ubicacion.VENTANA) {
+                return silla;
+            }
+        }
+        return null;
+    }
+
     /**
      * M�todo para la extensi�n 1.
      * @return Respuesta 1.
@@ -363,7 +372,10 @@ public class Avion {
      * @return Respuesta 2.
      */
     public String metodo2() {
-        return "Respuesta 2";
+        Silla sillaLibre = darSillaEconomicaLibreEnVentana();
+        if (sillaLibre != null) {
+            return "Si hay una silla econónomica gratuita en la ventana. El número de la silla es " + sillaLibre.darNumero() + ".";
+        }
+        return "No hay una silla econónomica libre en la ventana.";
     }
-
 }
