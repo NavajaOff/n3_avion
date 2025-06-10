@@ -324,7 +324,7 @@ public class Avion {
         int sillasEjecutivasVentana = contarSillasVentanaOcupadas(sillasEjecutivas);
         int sillasEconomicasVentana = contarSillasVentanaOcupadas(sillasEconomicas);
 
-        if (sillasEconomicasVentana > sillasEconomicasVentana) {
+        if (sillasEjecutivasVentana > sillasEconomicasVentana) {
             return Clase.EJECUTIVA;
         } else if (sillasEconomicasVentana > sillasEjecutivasVentana) {
             return Clase.ECONOMICA;
@@ -332,7 +332,7 @@ public class Avion {
         return null; // si son iguales o no hay sillas ocupadas
     }
 
-    private int contarSillasVentanaOcupadas(silla[] sillas) {
+    private int contarSillasVentanaOcupadas(Silla[] sillas) {
         int contador = 0;
         for (Silla silla : sillas) {
             if (silla.darUbicacion() == Ubicacion.VENTANA && silla.sillaAsignada()) {
@@ -355,15 +355,15 @@ public class Avion {
      * M�todo para la extensi�n 1.
      * @return Respuesta 1.
      */
-    public String metodo1( )
+    public String metodo1( ) {
         Clase claseConMasSillas = darClaseConMasSillasEnVentanaOcupadas();
 
         if (claseConMasSillas == Clase.EJECUTIVA) {
-            return "Hay más sillas ocupadas en la ventana de la clase ejecutiva.";
+            return "Hay mas sillas ocupadas ubicadas en la ventana en la clase ejecutiva.";
         } else if (claseConMasSillas == Clase.ECONOMICA) {
-            return "Hay más sillas ocupadas en la ventana de la clase económica.";{
+            return "Hay mas sillas ocupadas ubicadas en la ventana en la clase economica.";
         }
-        return "Hay un número igual de sillas ocupadas en la ventana de ambas clases.";
+        return "Hay un numero igual de sillas ocupadas en la ventana.";
     }
 
     /**
@@ -374,7 +374,7 @@ public class Avion {
     public String metodo2() {
         Silla sillaLibre = darSillaEconomicaLibreEnVentana();
         if (sillaLibre != null) {
-            return "Si hay una silla econónomica gratuita en la ventana. El número de la silla es " + sillaLibre.darNumero() + ".";
+            return "Si hay una silla economica libre en la ventana. El numero de la silla es " + sillaLibre.darNumero() + ".";
         }
         return "No hay una silla econónomica libre en la ventana.";
     }
