@@ -372,7 +372,10 @@ public class Avion {
      * @return Respuesta 2.
      */
     public String metodo2() {
-        return "Respuesta 2";
+        Silla sillaLibre = darSillaEconomicaLibreEnVentana();
+        if (sillaLibre != null) {
+            return "Si hay una silla econónomica gratuita en la ventana. El número de la silla es " + sillaLibre.darNumero() + ".";
+        }
+        return "No hay una silla econónomica libre en la ventana.";
     }
-
 }
